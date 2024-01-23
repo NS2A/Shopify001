@@ -1,0 +1,98 @@
+<div class="page-width">
+  <div id="tab-outer" class="product-description-tabs">
+    <ul id="tab-wrapper">
+      {% if product.description %}
+        <li><a href="#tab1">Description</a></li>
+      {% endif %}
+      {% if product.metafields['pricing-shipping'].pricing %}
+        <li><a href="#tab2">Pricing and shipment requirements</a></li>
+      {% endif %}
+      {% if product.metafields['product-quality'].quality %}
+        <li><a href="#tab3">Product Quality</a></li>
+      {% endif %}
+      {% if product.metafields['product-benefits'].benefits %}
+        <li><a href="#tab4">Health Benefits</a></li>
+      {% endif %}
+      {% if product.metafields['product-useful-links'].useful_links %}
+        <li><a href="#tab5">Useful Links</a></li>
+      {% endif %}
+      {% if product.metafields['useful-information'].useful %}
+        <li><a href="#tab6">Useful Information</a></li>
+      {% endif %}
+      {% if product.metafields['other-information'].information %}
+        <li><a href="#tab7">Other Information</a></li>
+      {% endif %}
+      {% if product.metafields['other-qualities'].qualities %}
+        <li><a href="#tab8">Other Qualities</a></li>
+      {% endif %}
+      {% if product.description %}
+        <li><a href="#tab9">Reviews</a></li>
+      {% endif %}
+      <li><a href="/pages/referrals">Refer a Friend Discount</a></li>
+    </ul>
+    <div id="tab-body">
+      <div id="tab1">
+        <h2>Description</h2>
+        <div class="product_des">{{ product.description }}</div>
+      </div>
+      <div id="tab2">
+        <h2>Pricing and shipment requirements: (Pricing depends on the market values changes)</h2>
+        {{ product.metafields['pricing-shipping'].pricing }}
+      </div>
+      <div id="tab3">
+        <h2>Product Quality</h2>
+        {{ product.metafields['product-quality'].quality }}
+      </div>
+      <div id="tab4">
+        <h2>Health Benefits</h2>
+        {{ product.metafields['product-benefits'].benefits }}
+      </div>
+      <div id="tab5">
+        <h2>Useful Links</h2>
+        {{ product.metafields['product-useful-links'].useful_links }}
+      </div>
+      <div id="tab6">
+        <h2>Useful Information</h2>
+        {{ product.metafields['useful-information'].useful }}
+      </div>
+      <div id="tab7">
+        <h2>Other Information</h2>
+        {{ product.metafields['other-information'].information }}
+      </div>
+      <div id="tab8">
+        <h2>Other qualities</h2>
+        {{ product.metafields['other-qualities'].qualities }}
+      </div>
+      <div id="tab9">
+        <h2>Reviews</h2>
+        {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: false, product: product %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#tab-wrapper li:first').addClass('active');
+  $('#tab-body > div').hide();
+  $('#tab-body > div:first').show();
+  $('#tab-wrapper a').click(function() {
+      $('#tab-wrapper li').removeClass('active');
+      $(this).parent().addClass('active');
+      var activeTab = $(this).attr('href');
+      $('#tab-body > div:visible').hide();
+      $(activeTab).show();
+      return false;
+  });
+</script>
+{% schema %}
+{
+  "name": "Section name",
+  "settings": []
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

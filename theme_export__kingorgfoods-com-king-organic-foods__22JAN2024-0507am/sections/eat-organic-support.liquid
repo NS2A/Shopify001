@@ -1,0 +1,98 @@
+<div class="oraganic-paper-background">
+  <div class="animation-image-top">
+    <img src="https://cdn.shopify.com/s/files/1/0682/5666/1821/files/s6.png?v=1669792434">
+  </div>
+  <div class="page-width">
+    <div class="section-header">
+      <h2>{{ section.settings.header }}</h2>
+    </div>
+    <div class="grid grid--4-col-desktop eat-organic-section">
+      {% for block in section.blocks %}
+        {%- assign product = all_products[block.settings.product] -%}
+        <div class="grid__item eat-organic-content">
+          <a href="{{ product.url }}">
+            <div class="image-outer">
+              <img src="{{ product.featured_image | product_img_url:"master" }}">
+            </div>
+            <div class="heading">
+              {{ product.title }}
+            </div>
+            <div class="content">
+              {{ product.description | truncatewords: '10' }}
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="page-width">
+    <div class="try-eat-content">
+      <div class="try-eat-heading-content">
+        <h2>{{ section.settings['bottom-header'] }}</h2>
+        <p>{{ section.settings.content }}</p>
+      </div>
+
+      <a href="{{ section.settings.button-url }}">{{ section.settings['button-name'] }}</a>
+    </div>
+  </div>
+  <div class="animation-image-bottom">
+    <img src="https://cdn.shopify.com/s/files/1/0682/5666/1821/files/s4.png?v=1669791306">
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Eat Organic Support",
+  "class":"eat-organic-support",
+  "settings": [
+    {
+      "type": "text",
+      "id": "header",
+      "label": "Header"
+    },
+    {
+      "type": "text",
+      "id": "bottom-header",
+      "label": "Bottom Header"
+    },
+    {
+      "type": "textarea",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "text",
+      "id": "button-name",
+      "label": "Button Name"
+    },
+    {
+      "type": "url",
+      "id": "button-url",
+      "label": "Button Url"
+    }
+  ],
+  "blocks": [
+   {
+     "name": "Pick Start",
+     "type": "pick-start",
+     "settings": [
+       {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+       }
+     ]
+   }
+  ],
+  "presets":[
+    {
+      "name":"Eat Organic Support"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
